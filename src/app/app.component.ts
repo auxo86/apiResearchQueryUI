@@ -30,8 +30,9 @@ export class AppComponent {
 
   }
 
-  AddCriteria(): void {
+  AddCriteria(): boolean {
     this.CriteriaBoxList.push(new CriteriaBox(this.NewIcd9cmCodes.value, this.NewIcd10cmCodes.value, this.NewOperand.value));
+    return false;
   }
 
   ResetForm(newICD9CMCodes: HTMLInputElement, newICD10CMCodes: HTMLInputElement, newOperand: HTMLInputElement): boolean {
