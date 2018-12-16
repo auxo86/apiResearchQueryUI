@@ -1,20 +1,48 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div>
+  <form [formGroup]="myForm">
+      <fieldset>
+        <legend>基本條件</legend>
+          <select name="Hospitals" id="Hospitals" multiple size="8">
+            <option value="801">801 三總</option>
+            <option value="802">802 高雄</option>
+            <option value="803">803 台中</option>
+            <option value="804">804 桃園</option>
+            <option value="805">805 花蓮</option>
+            <option value="806">806 左營</option>
+            <option value="807">807 松山</option>
+            <option value="811">811 澎湖</option>
+            <option value="812">812 基隆</option>
+            <option value="813">813 新竹</option>
+            <option value="814">814 岡山</option>
+            <option value="815">815 屏東</option>
+            <option value="816">816 中清</option>
+            <option value="818">818 北投</option>
+          </select>
+          開始日期：<input type="date" name="dateStart" id="dateStart">
+          結束日期：<input type="date" name="dateEnd" id="dateEnd">
+      </fieldset>
+      <fieldset>
+          <legend>診斷條件設定</legend>
+          <div>
+            ICD9CM列表： <input type="text" name="sListIcd9cm" [formControl]="NewIcd9cmCodes" #newICD9CMCodes>
+            ICD10CM列表：<input type="text" name="sListIcd10cm" [formControl]="NewIcd10cmCodes"  #newICD10CMCodes>
+            <select name="sOperand" [formControl]="NewOperand" #newOperand>
+              <option value="+">or</option>
+              <option value="&">and</option>
+              <option value="-">not</option>
+              <option value="">結束</option>
+            </select>
+            <button type="button" (click)='AddCriteria()'>新增</button>
+            <button type="button" (click)='ResetForm(newICD9CMCodes, newICD10CMCodes, newOperand)'>清空</button>
+          </div>
+      </fieldset>
+      <fieldset>
+        <legend>診斷條件</legend>
+        <div>
+          <app-criteria-list [Criterias]="CriteriaBoxList">
 
+          </app-criteria-list>
+        </div>
+      </fieldset>
+  </form>
+</div>
